@@ -1,26 +1,25 @@
-drop table users;
+DROP DATABASE IF EXISTS proj2016;
+CREATE DATABASE proj2016;
+USE proj2016;
+
 create table users(
 	account_id integer primary key,
+	fullname varchar(32) not null,
 	username varchar(16) not null,
 	password varchar(32) not null,
-	name varchar(32) not null,
-	address varchar(64) not null,
-	age integer not null
+	email varchar(64) not null,
+	gender varchar(16) not null,
+	age integer
 );
 
-drop table customer_rep;
 create table customer_rep(
 	account_id integer references users
-	
 );
 
-drop table admin;
 create table admin(
 	account_id integer references users
-
 );
 
-drop table item;
 create table item(
 	item_id integer primary key,
 	title varchar(32) not null,
@@ -28,14 +27,12 @@ create table item(
 	genre varchar(32) not null,
 	isbn integer not null, 
 	publisher varchar(32) not null, 
-	year integer varchar(32) not null, 
+	year integer not null, 
 	description text,
-	item_cond varchar(16)
-
+	item_cond varchar(16) not null
 );
 
 
-drop table active_auction;
 create table active_auction(
 	auction_id integer primary key,
 	start_date date not null, 
@@ -44,52 +41,43 @@ create table active_auction(
 	current_price decimal(8,2) not null,
 	start_price decimal(8,2) not null,
 	item_id integer references item,
-	selling_user references users
-
+	seller_id integer references users
 );
 
-drop table bid;
 create table bid(
 	bid_id integer primary key, 
 	bid_price decimal(8,2) not null, 
 	time timestamp not null, 
-	bidder_id references users,
-	auction_id references active_auction,
-	item_id references item 
-
+	bidder_id integer references users,
+	auction_id integer references active_auction,
+	item_id integer references item 
 );
 
-drop table active_inventory;
 create table active_inventory(
 	inventory_id integer primary key, 
 	quantity integer not null,
 	item_price integer not null, 
 	item_id integer references item,
-	selling_user references users
-
+	selling_user integer references users
 );
 
 
-drop table final_sales;
 create table final_sales(
 	sale_id integer primary key, 
-	item_id references item not null,
+	item_id integer references item,
 	sale_date date not null, 
 	sale_time timestamp not null,
 	quantity integer not null, 
 	sale_price decimal(8,2) not null, 
-	seller_id references users,
-	buyer_id references users
-
+	seller_id integer references users,
+	buyer_id integer references users
 );
 
-drop table forum;
 create table forum(
 
 	forum_id integer primary key,
-	asker_id references users,
-	answer_id references users, 
-	question text not null,
+	asker_id integer references users,
+	answer_id integer references users, 
+	question text,
 	answer text
-	
 );
