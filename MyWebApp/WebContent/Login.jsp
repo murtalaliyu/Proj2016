@@ -1,7 +1,7 @@
 <%-- 
     Document   : Loging
     Created on : Apr 8, 2016, 9:58:18 PM
-    Author     : syedmahmood
+    Author     : Murtala Aliyu
 --%>
 <%@page import="java.sql.*"%>
 
@@ -17,51 +17,50 @@
     
     <!-- jsp code start-->
          <%
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection connection = DriverManager.getConnection("JDBC:mysql://127.0.0.1/proj2016","root","WeHearKK290");
-            Statement st = connection.createStatement();
+         //LoadmySQLdriver
+         Class.forName("com.mysql.jdbc.Driver").newInstance();
+         //Connect to the local database
+         Connection conn = DriverManager.getConnection("JDBC:mysql://127.0.0.1/proj2016","root","WeHearKK290");
+         //Create query & run it
+         Statement stmt = conn.createStatement(); //object for executing a static SQL statement
             
           //Get the user entered username and password
             String username = request.getParameter("Username");
             String password = request.getParameter("Password");
             
-            if (button is clicked) {
-            	if (request.getParameter("Username") == '') {
-            		
-            	}
-            }
-            
-            String query_username = "SELECT username FROM users WHERE username=\'"+username+"\';";
-            String query_password = "SELECT password FROM users WHERE password=\'"+password+"\';";
-            System.out.println(username + " and " + password);
-            
-            /*   ResultSet result = st.executeQuery(query);
-           
-            boolean found = false;
-            
-            if (result.next()){
-            	found = true;
-            }
-            while (!(username.equals(result.getString("username")) && password.equals(result.getString("password")))) {
-                if (username.equals(result.getString("username")) && password.equals(result.getString("password"))) {
-                    found = true;
+          //Print 5 spaces
+            for (int i = 0; i < 5; i++) {
+            	System.out.println();	
+            } 
+        		 
+          //Check if username is in database, and if password matches
+    //    if (username != null) {
+            ResultSet rset = stmt.executeQuery("SELECT username FROM users");
+            while (rset.next()) {
+     //         System.out.println(rset.getString(1));
+                if (rset.getString(1) == request.getParameter("Username")) {
+                	System.out.println("username matches");
+                } else {
+                	System.out.println("username does not match");
                 }
-                result.next();
-            }*/
+            }
+       // }
+            
             %>
      <!-- jsp code stop-->
      
      
      
      <!-- HTML code start -->
-     <form action="Login.jsp" method = "post">
+     <form action="Homepage.jsp" method = "post">
          <p>Username
             <input type="text" name="Username" value="" />
             </p>
             <p>Password
-            <input type="text" name="Password" value="" />
+            <input type="password" name="Password" value="" />
             </p>
-            <input type ="submit" value ="Login">
+            <input type ="submit" value ="Login" >
+            <a href="index.jsp"><button type="button">Back to Main Page</button></a>
      </form>
      <!-- HTML code stop -->
             
