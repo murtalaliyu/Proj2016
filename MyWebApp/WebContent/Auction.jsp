@@ -89,13 +89,13 @@
 		} else {
 			out.println("Fail");
 		}
-		
+		/*
 		//Add active_auction details to db
 		int j = 0;
 		if () {
 			j = stmt.executeUpdate("INSTERT INTO active_auction(auction_id,start_date,end_date,reserve_price,current_price,start_price,item_id,seller_id) VALUES('" + auctionId + "','" + startDate + "','" + closeDate + "','" + secretPrice + "','" + currPrice + "','" + startPrice + "','" + itemId + "','" + userId + "');");
 		}
-
+*/
 		stmt.close();
 		conn.close();
 	%>
@@ -106,25 +106,25 @@
 	<form action="Auction.jsp" method="post">
 		<p>Fill in the item characteristics you want to sell</p>
 		<p>
-			Title: <input type="text" name="Title" value="" />
+			Title: <input type="text" name="Title" value="" required/>
 		</p>
 		<p>
-			Author: <input type="text" name="Author" value="" />
+			Author: <input type="text" name="Author" value="" required/>
 		</p>
 		<p>
-			Genre: <input type="text" name="Genre" value="" />
+			Genre: <input type="text" name="Genre" value="" required/>
 		</p>
 		<p>
-			ISBN Number: <input type="number" name="ISBN" value="" />
+			ISBN Number: <input type="number" name="ISBN" value="" required/>
 		</p>
 		<p>
-			Publisher: <input type="text" name="Publisher" value="" />
+			Publisher: <input type="text" name="Publisher" value="" required/>
 		</p>
 		<p>
-			Year Published: <input type="text" name="Year" value="" />
+			Year Published: <input type="text" name="Year" value="" required/>
 		</p>
 		<p>
-			Description: <input type="text" name="Description" value="" />
+			Description: <input type="text" name="Description" value="" required/>
 		</p>
 		<p>
 			Condition: <input type="radio" name="Condition" value="New" /> New <input
@@ -132,15 +132,16 @@
 		</p>
 		<p>
 			Minimum Price (This reserve price will be hidden): <input
-				type="number" name="SecretPrice" value="" />
+				type="number" name="SecretPrice" value="" required/>
 		</p>
 		<p>
 			Auction Closing Date <input type="text" name="CloseDate"
-				placeholder="yyyy-mm-dd" />
+				placeholder="yyyy-mm-dd" required/>
 		</p>
 		<p>*automatically add opening date and time to db</p>
 
-		<input type="submit" name="Begin Auction" value="Begin Auction">
+		<input type="submit" name="Begin Auction" value="Begin Auction" />
+		<input type="submit" name="Sell Item" value="Sell Item" />
 		<a href="Homepage.jsp"><button type="button">Back to Home
 				Page</button></a>
 	</form>

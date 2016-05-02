@@ -27,6 +27,9 @@
 		//Create query & run it
 		Statement stmt = conn.createStatement(); //object for executing a static SQL statement
 
+		//gets particular user's username
+		//String a = session.getAttribute("username").toString();
+
 		//returns name of person whose account id is 16
 		ResultSet rset = stmt.executeQuery("SELECT fullname FROM users WHERE account_id = 16");
 		String name = "";
@@ -53,6 +56,7 @@
 	<a href="Profile.jsp"><button type="button">My Profile</button></a>
 	<a href="History.jsp"><button type="button">View
 			Auction/Bid History</button></a>
+	<a href="Forum.jsp"><button type="button">Forum</button></a>
 	<!-- HTML code stop -->
 </body>
 </html>

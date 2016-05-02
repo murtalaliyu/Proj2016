@@ -33,7 +33,7 @@ pageEncoding="UTF-8" import = "java.util.*" import = "java.sql.*" %>
 		}
 		
 		try {
-		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/proj2016?autoReconnect=true", "root", "Omsairam16!");
+		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/proj2016?autoReconnect=true", "root", "WeHearKK290");
 		
 		} catch (SQLException e) {
 		// TODO Auto-generated catch block

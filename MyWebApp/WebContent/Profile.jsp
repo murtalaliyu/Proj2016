@@ -55,6 +55,9 @@
  		if (rset.next()) {
  			age = rset.getString(1);
  		}
+ 		
+ 		//String user = session.getAttribute("username").toString();
+ 		
          %>
 	<!-- jsp code stop-->
 
