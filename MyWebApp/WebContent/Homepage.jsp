@@ -33,7 +33,6 @@
 		if (rset.next()) {
 			name = rset.getString(1);
 		}
-		System.out.println(rset.getString(1));
 	%>
 	<!-- jsp code stop -->
 
@@ -43,12 +42,8 @@
 		if (session.isNew()) {
 			out.println("Welcome, " + name);
 		} else {
-			out.println("Welcome back, " + name);
+			out.println("Welcome back, " + name + ". Today's date is " + new Date(session.getCreationTime()));
 		}
-
-		// Get session creation time.
-		Date date = new Date(session.getCreationTime());
-		out.println(date);
 	%>
 	<p>This is your home page where you can post items up for sale, or
 		bid for products you like.</p>
