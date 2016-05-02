@@ -25,7 +25,7 @@
          //Create query & run it
          Statement stmt = conn.createStatement(); //object for executing a static SQL statement
         		 
-         int random = (int )(Math.random() * 50 + 1);
+         int userId = (int )(Math.random() * 10000 + 1);
          String fullname = request.getParameter("Fullname");
          String username = request.getParameter("Username");
          String password = request.getParameter("Password");
@@ -51,7 +51,7 @@
          
          int i = 0;
          if (email != null && age >= 13) {
-         i = stmt.executeUpdate("INSERT INTO users(account_id,fullname,username,password,email,gender,age) VALUES ('"+random+"','"+fullname+"','"+username+"','"+password+"','"+email+"','"+gender+"','"+age+"');");
+         i = stmt.executeUpdate("INSERT INTO users(account_id,fullname,username,password,email,gender,age) VALUES ('"+userId+"','"+fullname+"','"+username+"','"+password+"','"+email+"','"+gender+"','"+age+"');");
          }
          if (i > 0) {
         	 System.out.println("Successful");

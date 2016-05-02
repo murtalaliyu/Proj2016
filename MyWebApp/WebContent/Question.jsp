@@ -1,6 +1,6 @@
 <%-- 
-    Document   : Buyer Bid
-    Created on : Apr 28, 2016,02:35:45 PM
+    Document   : Question Page
+    Created on : May 01, 2016,10:04:27 PM
     Author     : Murtala Aliyu
 --%>
 
@@ -14,7 +14,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
-<title>Buyer Bid</title>
+<title>Question Page</title>
 </head>
 
 <body>
@@ -33,10 +33,10 @@
 
 
 	<!-- HTML code start -->
-	<p>
-		This is your Bid page, it contains all information regarding your past
-		and current bids. You have the option of bidding manually or setting
-		an auto bid.</p>
-		<!-- HTML code stop -->
+		<textarea name="question" placeholder="Post question here" rows="25" cols="70"></textarea>
+		<br>
+		<input type="button" name="submit" value="Submit" />
+		<a href="Forum.jsp"><input type="button" name="back" value="Back" /></a>
+	<!-- HTML code stop -->
 </body>
 </html>

@@ -29,8 +29,12 @@
 
 
 	<!-- HTML code start -->
-	<p>This is the admin page. You can generate reports and monitor
-		users as well as customer reps</p>
+	<p>This is the admin page. Admin can generate reports and monitor
+		users as well as customer representatives</p>
+		<input type="button" name="AnswerQuestion" value="Answer User Questions" />
+		<input type="button" name="ModifyUserAccount" value="Modify User Account" />
+		<input type="button" name="ModifyRepAccount" value="Modify Rep Account" />
+		<input type="button" name="Report" value="Generate Report" />
 	<!-- HTML code stop -->
 
 </body>

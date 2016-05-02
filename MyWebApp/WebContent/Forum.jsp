@@ -1,6 +1,6 @@
 <%-- 
-    Document   : Buyer Bid
-    Created on : Apr 28, 2016,02:35:45 PM
+    Document   : Forum Page
+    Created on : May 01, 2016,09:59:55 PM
     Author     : Murtala Aliyu
 --%>
 
@@ -14,7 +14,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
-<title>Buyer Bid</title>
+<title>Forum Page</title>
 </head>
 
 <body>
@@ -26,17 +26,17 @@
 		Connection conn = DriverManager.getConnection("JDBC:mysql://127.0.0.1/proj2016", "root", "WeHearKK290");
 		//Create query & run it
 		Statement stmt = conn.createStatement(); //object for executing a static SQL statement
-		
-		
 	%>
 	<!-- jsp code stop -->
 
 
 	<!-- HTML code start -->
-	<p>
-		This is your Bid page, it contains all information regarding your past
-		and current bids. You have the option of bidding manually or setting
-		an auto bid.</p>
-		<!-- HTML code stop -->
+	<p>This is your Forum page. You can post questions and a customer
+		representative will answer them. You can also view past questions
+		you've asked and corresponding answers. an auto bid.</p>
+	<a href="Question.jsp"><input type="button" name="Question"
+		value="Ask Question" /></a>
+	<a href="Homepage.jsp"><input type="button" name="back" value="Back to Homepage" /></a>
+	<!-- HTML code stop -->
 </body>
 </html>

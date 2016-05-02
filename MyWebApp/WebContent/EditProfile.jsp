@@ -1,6 +1,6 @@
 <%-- 
-    Document   : Buyer Bid
-    Created on : Apr 28, 2016,02:35:45 PM
+    Document   : Profile Editing Page
+    Created on : May 01, 2016,10:24:30 PM
     Author     : Murtala Aliyu
 --%>
 
@@ -14,7 +14,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
-<title>Buyer Bid</title>
+<title>Edit my Profile</title>
 </head>
 
 <body>
@@ -26,17 +26,33 @@
 		Connection conn = DriverManager.getConnection("JDBC:mysql://127.0.0.1/proj2016", "root", "WeHearKK290");
 		//Create query & run it
 		Statement stmt = conn.createStatement(); //object for executing a static SQL statement
-		
-		
 	%>
 	<!-- jsp code stop -->
 
 
 	<!-- HTML code start -->
-	<p>
-		This is your Bid page, it contains all information regarding your past
-		and current bids. You have the option of bidding manually or setting
-		an auto bid.</p>
-		<!-- HTML code stop -->
+		<form action="EditProfile.jsp" method="post">
+		<p>
+			Full name <input type="text" name="Fullname" value="" />
+		</p>
+		<p>
+			Username <input type="text" name="Username" value="" />
+		</p>
+		<p>
+			Password <input type="password" name="Password" value="" />
+		</p>
+		<p>
+			Email <input type="text" name="Email" value="" />
+		</p>
+		<p>
+			Gender <input type="text" name="Gender" value="" />
+		</p>
+		<p>
+			Age <input type="text" name="Age" value="" />
+		</p>
+		<input type="submit" name="signup" value="Signup"> <a
+			href="index.jsp"><button type="button">Back to Main Page</button></a>
+	</form>
+	<!-- HTML code stop -->
 </body>
 </html>

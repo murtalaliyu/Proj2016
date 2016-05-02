@@ -24,13 +24,58 @@
          //Create query & run it
          Statement stmt = conn.createStatement(); //object for executing a static SQL statement
          
+         ResultSet rset = stmt.executeQuery("SELECT account_id FROM users WHERE account_id = 16");
+  		int id = 0;
+  		if (rset.next()) {
+  			id = rset.getInt(1);
+  		}
+       //returns user information of person whose account id is 16
+ 		rset = stmt.executeQuery("SELECT fullname FROM users WHERE account_id = 16");
+ 		String name = "";
+ 		if (rset.next()) {
+ 			name = rset.getString(1);
+ 		}
+ 		rset = stmt.executeQuery("SELECT username FROM users WHERE account_id = 16");
+ 		String username = "";
+ 		if (rset.next()) {
+ 			username = rset.getString(1);
+ 		}
+ 		rset = stmt.executeQuery("SELECT email FROM users WHERE account_id = 16");
+ 		String email = "";
+ 		if (rset.next()) {
+ 			email = rset.getString(1);
+ 		}
+ 		rset = stmt.executeQuery("SELECT gender FROM users WHERE account_id = 16");
+ 		String gender = "";
+ 		if (rset.next()) {
+ 			gender = rset.getString(1);
+ 		}
+ 		rset = stmt.executeQuery("SELECT age FROM users WHERE account_id = 16");
+ 		String age = "";
+ 		if (rset.next()) {
+ 			age = rset.getString(1);
+ 		}
          %>
 	<!-- jsp code stop-->
 
 
 
 	<!-- HTML code start -->
-		
+		<p>This is your profile page.</p>
+		Account Id: <% out.println(id); %>
+		<br><br>
+		Name: <% out.println(name); %>
+		<br><br>
+		Username: <% out.println(username); %>
+		<br><br>
+		Email: <% out.println(email); %>
+		<br><br>
+		Gender: <% out.println(gender); %>
+		<br><br>
+		Age: <% out.println(age); %>
+		<br><br>
+		<a href="EditProfile.jsp"><input type="button" name="Edit" value="Edit my Profile" /></a>
+		<a href="Homepage.jsp"><input type="button" name="Back" value="Back to Homepage" /></a>
 	<!-- HTML code stop -->
 
 </body>

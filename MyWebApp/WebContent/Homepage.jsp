@@ -27,19 +27,28 @@
 		//Create query & run it
 		Statement stmt = conn.createStatement(); //object for executing a static SQL statement
 
+		//returns name of person whose account id is 16
 		ResultSet rset = stmt.executeQuery("SELECT fullname FROM users WHERE account_id = 16");
 		String name = "";
 		if (rset.next()) {
 			name = rset.getString(1);
 		}
-		//         System.out.println(rset.getString(1));
+		System.out.println(rset.getString(1));
 	%>
 	<!-- jsp code stop -->
 
 
 	<!-- HTML code start -->
 	<%
-		out.println("Welcome, " + name);
+		if (session.isNew()) {
+			out.println("Welcome, " + name);
+		} else {
+			out.println("Welcome back, " + name);
+		}
+
+		// Get session creation time.
+		Date date = new Date(session.getCreationTime());
+		out.println(date);
 	%>
 	<p>This is your home page where you can post items up for sale, or
 		bid for products you like.</p>
