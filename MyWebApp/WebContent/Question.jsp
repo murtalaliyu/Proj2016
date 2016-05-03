@@ -31,12 +31,15 @@
 		String question = "";
 		if (request.getParameter("Question") != null) {
 			question = request.getParameter("Question");
-			System.out.println(question);
+			//System.out.println(question);
 		}
 
 		//get session username
 		String user = session.getAttribute("username").toString();
-		//out.println(user);
+		
+		//hash the ids
+		int forum_id = user.hashCode();
+		forum_id = Math.abs(forum_id);
 
 		//returns account_id of person who's logged in with username user
 		ResultSet rset = stmt.executeQuery("SELECT * FROM users u WHERE u.username ='" + user + "'");
@@ -44,13 +47,17 @@
 		if (rset.next()) {
 			user_id = rset.getInt("account_id");
 		}
+		
 		//out.println(x);
+		
+		//placeholder for answer
+		String answer = "whats up";
 
 		//add question to db
 		int j = 0;
 		if (request.getParameter("Question") != null) {
-			j = stmt.executeUpdate("INSERT INTO forum VALUES('" + user_id + "','" + 2 + "','" + 3 + "','" + question
-					+ "'+'answer')");
+			j = stmt.executeUpdate("INSERT INTO forum(forum_id,asker_id,answer_id,question,answer) VALUES ('"
+					+ forum_id + "','" + user_id + "','" + 3 + "','" + question + "','" + answer + "');");
 		}
 		if (j > 0) {
 			System.out.println("done");
@@ -65,7 +72,7 @@
 	<form action="Question.jsp" method="post">
 		<textarea name="Question" placeholder="Post question here" rows="25"
 			cols="70"></textarea>
-		<br> <input type="button" name="submit" value="Submit" /> <a
+		<br> <input type="submit" name="Ask" value="Submit" /> <a
 			href="Forum.jsp"><input type="button" name="back" value="Back" /></a>
 	</form>
 	<!-- HTML code stop -->

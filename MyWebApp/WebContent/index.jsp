@@ -28,6 +28,8 @@
 		Selling Books</p>
 	<a href="Login.jsp"><button type="button">Login</button></a>
 	<a href="Signup.jsp"><button type="button">Sign Up</button></a>
+	<a href="Admin.jsp"><button type="submit">Login as Administrator</button></a>
+	<a href="Rep.jsp"><button type="submit">Login as Customer Rep</button></a>
 	<!-- HTML code stop-->
 
 </body>
