@@ -26,17 +26,16 @@
 		Connection conn = DriverManager.getConnection("JDBC:mysql://127.0.0.1/proj2016", "root", "WeHearKK290");
 		//Create query & run it
 		Statement stmt = conn.createStatement(); //object for executing a static SQL statement
-		
-		
 	%>
 	<!-- jsp code stop -->
 
 
 	<!-- HTML code start -->
-	<p>
-		This is your Bid page, it contains all information regarding your past
-		and current bids. You have the option of bidding manually or setting
-		an auto bid.</p>
-		<!-- HTML code stop -->
+	<p>This is your Bid page, it contains all information regarding
+		your past and current bids. You have the option of bidding manually or
+		setting an auto bid.</p>
+	<a href="Home.jsp"><button type="button">Back to HomePage</button></a>
+
+	<!-- HTML code stop -->
 </body>
 </html>

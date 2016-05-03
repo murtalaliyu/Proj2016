@@ -27,9 +27,6 @@
 		//Create query & run it
 		Statement stmt = conn.createStatement(); //object for executing a static SQL statement
 
-		//gets particular user's username
-		//String a = session.getAttribute("username").toString();
-
 		//returns name of person whose account id is 16
 		ResultSet rset = stmt.executeQuery("SELECT fullname FROM users WHERE account_id = 16");
 		String name = "";
@@ -41,6 +38,7 @@
 
 
 	<!-- HTML code start -->
+	
 	<%
 		if (session.isNew()) {
 			out.println("Welcome, " + name);
