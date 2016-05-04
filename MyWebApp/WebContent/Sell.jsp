@@ -94,7 +94,6 @@
 
 		// Get creation time. Need to fix this
 		//Date startDate = new Date(session.getCreationTime());
-		String timeSold = "05/04/2016";
 
 		//Add item details to item db
 		int i = 0;
@@ -125,9 +124,8 @@
 			try {
 				inventoryId = inventoryId * random;
 				j = stmt.executeUpdate(
-						"INSERT INTO active_inventory(inventory_id,item_price,item_id,selling_user,time_sold,quantity) VALUES ('"
-								+ inventoryId + "','" + price + "','" + itemId + "','" + userId + "','" + timeSold
-								+ "','" + 1 + "');");
+						"INSERT INTO active_inventory(inventory_id,item_price,item_id,selling_user,quantity) VALUES ('"
+								+ inventoryId + "','" + price + "','" + itemId + "','" + userId + "','" + 1 + "');");
 			} catch (Exception e) {
 				out.print("You have entered an invalid response, please try again");
 			}
