@@ -39,16 +39,6 @@
          
          ResultSet rset = stmt.executeQuery("SELECT fullname FROM users");
          
-     /*    //check if credentials already exist
-         int check = 0;
-         while (rset.next()) {
-           	 if ((email == rset.getString("email"))) {
-           		 System.out.println("username or email already exists");
-           	 } else {
-           		 check = 1;
-           	 }
-         }*/
-         
          int i = 0;
          if (email != null && age >= 13) {
          i = stmt.executeUpdate("INSERT INTO users(account_id,fullname,username,password,email,gender,age) VALUES ('"+userId+"','"+fullname+"','"+username+"','"+password+"','"+email+"','"+gender+"','"+age+"');");

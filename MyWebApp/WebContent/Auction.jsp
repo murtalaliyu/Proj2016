@@ -28,31 +28,49 @@
 		//Create query & run it
 		Statement stmt = conn.createStatement(); //object for executing a static SQL statement
 
-		//Necessary IDs
-		int itemId = (int) (Math.random() * 10000 + 1);
-		int auctionId = (int) (Math.random() * 10000 + 1);
-		//get session username
-		String user = session.getAttribute("username").toString();
-		//returns account_id of person who's logged in with username user
-		ResultSet rset = stmt.executeQuery("SELECT * FROM users u WHERE u.username ='" + user + "'");
-		int user_id = 0;
-		if (rset.next()) {
-			user_id = rset.getInt("account_id");
-		}
-
 		//get title, author and genre
 		String title = request.getParameter("Title");
 		String author = request.getParameter("Author");
 		String genre = request.getParameter("Genre");
 
-		String temp_isbn = request.getParameter("ISBN");
-		int isbn = 0;
-		if (temp_isbn != null) {
-			isbn = Integer.parseInt(temp_isbn);
+		//itemID
+		int itemId = 0;
+		if (request.getParameter("Title") != null) {
+			itemId = title.hashCode();
+			itemId = Math.abs(itemId);
 		}
 
+		//auctionId
+		int auctionId = 0;
+		if (request.getParameter("Author") != null) {
+			auctionId = author.hashCode();
+			auctionId = Math.abs(auctionId);
+		}
+
+		//get session username
+		String user = session.getAttribute("username").toString();
+		//returns account_id of person who's logged in with username user
+		ResultSet rset = stmt.executeQuery("SELECT * FROM users u WHERE u.username ='" + user + "'");
+		int userId = 0;
+		if (rset.next()) {
+			userId = rset.getInt("account_id");
+		}
+
+		//isbn
+		String temp_isbn = request.getParameter("ISBN");
+		int isbn = 0;
+		if (request.getParameter("ISBN") != null) {
+			try {
+				isbn = Integer.parseInt(request.getParameter("ISBN"));
+			} catch (Exception e) {
+				out.print("ISBN is invalid");
+			}
+		}
+
+		//publisher
 		String publisher = request.getParameter("Publisher");
 
+		//year published
 		String temp_year = request.getParameter("Year");
 		int year = 0;
 		int length = 0;
@@ -61,64 +79,100 @@
 			if (length == 4) {
 				year = Integer.parseInt(temp_year);
 			} else {
-				out.println("The year entered is invalid. Please Try again");
+				out.println("The year entered is invalid. Please try again.");
 			}
 		}
 
+		//description
 		String description = request.getParameter("Description");
+
+		//condition
 		String condition = request.getParameter("Condition");
 
-		String temp_price = request.getParameter("SecretPrice");
-		int reservePrice = 0;
-		if (temp_price != null) {
-			reservePrice = Integer.parseInt(temp_price);
+		//reserve price
+		String temp_price = request.getParameter("ReservePrice");
+		double reservePrice = 0;
+		if (request.getParameter("ReservePrice") != null) {
+			try {
+				reservePrice = Integer.parseInt(request.getParameter("ReservePrice"));
+			} catch (Exception e) {
+				out.println("Reserve price is invalid. Please try again.");
+			}
 		}
 
+		//start price
 		String temp_startPrice = request.getParameter("StartPrice");
-		int startPrice = 0;
-		if (temp_startPrice != null) {
-			startPrice = Integer.parseInt(temp_startPrice);
+		double startPrice = 0;
+		if (request.getParameter("StartPrice") != null) {
+			try {
+				startPrice = Integer.parseInt(request.getParameter("StartPrice"));
+			} catch (Exception e) {
+				out.println("Start price is invalid. Please try again.");
+			}
 		}
 
-		int currentPrice = 0;
+		//current price
+		double currentPrice = startPrice;
 
-		// Get creation time.
-		Date startDate = new Date(session.getCreationTime());
+		// Get creation time. Need to fix this
+		//Date startDate = new Date(session.getCreationTime());
+		String startDate = "05/04/2016";
 
 		// Get close date
-		DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-		String temp_closeDate = request.getParameter("CloseDate");
-		try {
-			Date date = formatter.parse(temp_closeDate);
-			System.out.println(date);
-			System.out.println(formatter.format(date));
-		} catch (ParseException e) {
-			e.printStackTrace();
+		String closeDate = request.getParameter("CloseDate");
+		int yearCheck = 1;
+		if (request.getParameter("CloseDate") != null) {
+			if ((closeDate.charAt(2) != '/') || (closeDate.charAt(5) != '/')) {
+				out.println("Close date format is wrong,");
+				yearCheck = 0;
+			}
 		}
+
+		//format
+		String format = request.getParameter("Format");
 
 		//Add item details to db
 		int i = 0;
 		if (title != null && author != null && genre != null && isbn != 0 && publisher != null && year != 0
-				&& description != null && condition != null && reservePrice != 0 && closeDate != null) {
-			i = stmt.executeUpdate(
-					"INSERT INTO item(item_id,title,author,genre,isbn,publisher,year,description,item_cond) VALUES ('"
-							+ itemId + "','" + title + "','" + author + "','" + genre + "','" + isbn + "','"
-							+ publisher + "','" + year + "','" + description + "','" + condition + "');");
+				&& description != null && condition != null && reservePrice != 0 && closeDate != null
+				&& yearCheck == 1 && startPrice > 0 && reservePrice > 0 && isbn > 0) {
+			try {
+				i = stmt.executeUpdate(
+						"INSERT INTO item(item_id,title,author,genre,isbn,publisher,year,description,item_cond,format) VALUES ('"
+								+ itemId + "','" + title + "','" + author + "','" + genre + "','" + isbn + "','"
+								+ publisher + "','" + year + "','" + description + "','" + condition + "','"
+								+ format + "');");
+			} catch (Exception e) {
+				out.print("You have entered an invalid response, ");
+			}
 		}
 		if (i > 0) {
-			out.println("Your auction has begun");
+			out.println("added to item!");
 		} else {
-			out.println("Auction failed to start");
+			out.println("check adding item to db, ");
 		}
 
 		//Add active_auction details to db
 		int j = 0;
-		if (auctionId != 0 && reservePrice != 0 && currentPrice != 0 && startPrice != 0) {
-			j = stmt.executeUpdate(
-					"INSTERT INTO active_auction(auction_id,start_date,end_date,reserve_price,current_price,start_price,item_id,seller_id) VALUES('"
-							+ auctionId + "','" + startDate + "','" + closeDate + "','" + reservePrice + "','"
-							+ currentPrice + "','" + startPrice + "','" + itemId + "','" + user_id + "');");
+		if (auctionId != 0 && reservePrice != 0 && startPrice != 0 && yearCheck == 1 && startPrice > 0
+				&& reservePrice > 0 && isbn > 0) {
+			try {
+				j = stmt.executeUpdate(
+						"INSERT INTO active_auction(auction_id,start_date,end_date,reserve_price,current_price,start_price,item_id,seller_id) VALUES('"
+								+ auctionId + "','" + startDate + "','" + closeDate + "','" + reservePrice + "','"
+								+ currentPrice + "','" + startPrice + "','" + itemId + "','" + userId + "');");
+			} catch (Exception e) {
+				out.println("please try again");
+			}
 		}
+		if (j > 0) {
+			out.println("added to active_auction");
+		} else {
+			out.println("check adding active_auction to db");
+		}
+
+		System.out.println(auctionId + ',' + startDate + ',' + closeDate + ',' + reservePrice + ',' + currentPrice
+				+ ',' + startPrice + ',' + itemId + ',' + userId);
 
 		stmt.close();
 		conn.close();
@@ -146,6 +200,11 @@
 			Publisher: <input type="text" name="Publisher" value="" required />
 		</p>
 		<p>
+			Book format: <input type="radio" name="Format" value="Paperback" />
+			Paperback <input type="radio" name="Format" value="HardCover" />
+			Hard Cover <input type="radio" name="Format" value="LooseLeaf" />
+			Loose Leaf
+		<p>
 			Year Published: <input type="text" name="Year" value="" required />
 		</p>
 		<p>
@@ -163,13 +222,12 @@
 			Start Price: <input type="number" name="StartPrice" value="" required />
 		<p>
 			Auction Closing Date <input type="text" name="CloseDate"
-				placeholder="yyyy-MM-dd" required />
+				placeholder="mm/dd/yyyy" required />
 		</p>
 		<p>*automatically add opening date and time to db</p>
 
-		<button type="submit">Start Auction</button>
-		<a href="Home.jsp"><button type="button">Back to Home
-				Page</button></a>
+		<input type="submit" name="StartAuction" value="Start Auction" /> <a
+			href="Home.jsp"><button type="button">Back to Home Page</button></a>
 
 	</form>
 	<!-- HTML code stop -->
