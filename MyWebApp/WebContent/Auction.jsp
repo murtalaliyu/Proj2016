@@ -120,41 +120,46 @@
 
 		// Get close date
 		String closeDate = request.getParameter("CloseDate");
-		int yearCheck = 1;
+		/*int yearCheck = 1;
 		if (request.getParameter("CloseDate") != null) {
 			if ((closeDate.charAt(2) != '/') || (closeDate.charAt(5) != '/')) {
 				out.println("Close date format is wrong,");
 				yearCheck = 0;
 			}
-		}
+		}*/
 
 		//format
 		String format = request.getParameter("Format");
+		
+		//sold_as
+		String soldAs = "Auction";
 
-		//Add item details to db
+		//Add item details to item db
 		int i = 0;
 		if (title != null && author != null && genre != null && isbn != 0 && publisher != null && year != 0
 				&& description != null && condition != null && reservePrice != 0 && closeDate != null
-				&& yearCheck == 1 && startPrice > 0 && reservePrice > 0 && isbn > 0) {
+				&& /*yearCheck == 1 &&*/ startPrice > 0 && reservePrice > 0 && isbn > 0) {
 			try {
 				i = stmt.executeUpdate(
-						"INSERT INTO item(item_id,title,author,genre,isbn,publisher,year,description,item_cond,format) VALUES ('"
+						"INSERT INTO item(item_id,title,author,genre,isbn,publisher,year,description,item_cond,format,sold_as) VALUES ('"
 								+ itemId + "','" + title + "','" + author + "','" + genre + "','" + isbn + "','"
 								+ publisher + "','" + year + "','" + description + "','" + condition + "','"
-								+ format + "');");
+								+ format + "','" + soldAs + "');");
 			} catch (Exception e) {
 				out.print("You have entered an invalid response, ");
 			}
 		}
 		if (i > 0) {
 			out.println("added to item!");
+		} else if (title == null) {
+
 		} else {
 			out.println("check adding item to db, ");
 		}
 
 		//Add active_auction details to db
 		int j = 0;
-		if (auctionId != 0 && reservePrice != 0 && startPrice != 0 && yearCheck == 1 && startPrice > 0
+		if (auctionId != 0 && reservePrice != 0 && startPrice != 0 && /*yearCheck == 1 &&*/ startPrice > 0
 				&& reservePrice > 0 && isbn > 0) {
 			try {
 				j = stmt.executeUpdate(
@@ -167,6 +172,8 @@
 		}
 		if (j > 0) {
 			out.println("added to active_auction");
+		} else if (title == null) {
+
 		} else {
 			out.println("check adding active_auction to db");
 		}

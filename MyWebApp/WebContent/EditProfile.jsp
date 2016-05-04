@@ -50,6 +50,15 @@
 		<p>
 			Age <input type="text" name="Age" value="" />
 		</p>
+		<p>
+			Old password <input type="text" name="OldPass" value="" />
+		</p>
+		<p>
+			New password <input type="text" name="NewPass" value="" />
+		</p>
+		<p>
+			Confirm new password <input type="text" name="NewPass" value="" />
+		</p>
 		<input type="submit" name="signup" value="Edit My Profile"> <a
 			href="Profile.jsp"><button type="button">Back to Profile</button></a>
 	</form>

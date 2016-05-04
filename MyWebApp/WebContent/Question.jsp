@@ -58,9 +58,13 @@
 		int j = 0;
 		if (request.getParameter("Question") != null) {
 			questions = questions * random;
+			try {
 			forum_id = forum_id * random;
 			j = stmt.executeUpdate("INSERT INTO forum(forum_id,asker_id,answer_id,question,answer,question_num) VALUES ('"
 					+ forum_id + "','" + user_id + "','" + 3 + "','" + question + "','" + answer + "','" + questions + "');");
+			} catch (Exception e) {
+				System.out.println("Looks like an error. Try again");
+			}
 		}
 		if (j > 0) {
 			System.out.println("done");
