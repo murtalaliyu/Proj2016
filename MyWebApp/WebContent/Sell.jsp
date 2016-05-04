@@ -96,12 +96,6 @@
 		//Date startDate = new Date(session.getCreationTime());
 		String timeSold = "05/04/2016";
 
-		//format
-		String format = request.getParameter("Format");
-
-		//sold as
-		String soldAs = "One time";
-
 		//Add item details to item db
 		int i = 0;
 		if (title != null && author != null && genre != null && publisher != null && year != 0
@@ -109,10 +103,9 @@
 			try {
 				itemId = itemId * random;
 				i = stmt.executeUpdate(
-						"INSERT INTO item(item_id,title,author,genre,isbn,publisher,year,description,item_cond,format,sold_as) VALUES ('"
+						"INSERT INTO item(item_id,title,author,genre,isbn,publisher,year,description,item_cond) VALUES ('"
 								+ itemId + "','" + title + "','" + author + "','" + genre + "','" + isbn + "','"
-								+ publisher + "','" + year + "','" + description + "','" + condition + "','"
-								+ format + "','" + soldAs + "');");
+								+ publisher + "','" + year + "','" + description + "','" + condition + "');");
 			} catch (Exception e) {
 				out.print("You have entered an invalid response, please try again");
 			}
@@ -132,9 +125,9 @@
 			try {
 				inventoryId = inventoryId * random;
 				j = stmt.executeUpdate(
-						"INSERT INTO active_inventory(inventory_id,item_price,item_id,selling_user,time_sold,format,quantity) VALUES ('"
+						"INSERT INTO active_inventory(inventory_id,item_price,item_id,selling_user,time_sold,quantity) VALUES ('"
 								+ inventoryId + "','" + price + "','" + itemId + "','" + userId + "','" + timeSold
-								+ "','" + format + "','" + 1 + "');");
+								+ "','" + 1 + "');");
 			} catch (Exception e) {
 				out.print("You have entered an invalid response, please try again");
 			}
@@ -172,12 +165,6 @@
 		<p>
 			Publisher: <input type="text" name="Publisher" value="" required />
 		</p>
-		<p>
-			Book format: <input type="radio" name="Format" value="Paperback" />
-			Paperback <input type="radio" name="Format" value="HardCover" />
-			Hard Cover <input type="radio" name="Format" value="LooseLeaf" />
-			Loose Leaf
-		<p>
 		<p>
 			Year Published: <input type="text" name="Year" value="" required />
 		</p>
