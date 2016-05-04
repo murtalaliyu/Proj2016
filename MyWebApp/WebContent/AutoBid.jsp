@@ -58,6 +58,20 @@
 		if (rset.next()) {
 			userId = rset.getInt("account_id");
 		}
+		
+		//get alert_id
+		int alertId = tAutoBid.hashCode();
+		alertId = Math.abs(alertId);
+		
+		/*//get item_id
+		rset = stmt.executeQuery("SELECT * FROM item i WHERE i.username ='" + user + "'");
+		int itemId = 0;
+		if (rset.next()) {
+			itemId = rset.getInt("itemId");
+		}*/
+		
+		//add autobid to bid table
+		
 	%>
 	<!-- jsp code stop -->
 

@@ -26,6 +26,25 @@
 		Connection conn = DriverManager.getConnection("JDBC:mysql://127.0.0.1/proj2016", "root", "WeHearKK290");
 		//Create query & run it
 		Statement stmt = conn.createStatement(); //object for executing a static SQL statement
+
+		//get session username
+		String user = session.getAttribute("username").toString();
+		//returns account_id of person who's logged in with username user
+		ResultSet rset = stmt.executeQuery("SELECT * FROM users u WHERE u.username ='" + user + "'");
+		int userId = 0;
+		if (rset.next()) {
+			userId = rset.getInt("account_id");
+		}
+		
+		//get past questions and corresponding answer
+		rset = stmt.executeQuery("SELECT * FROM forum f WHERE f.asker_id ='" + userId + "'");
+		String question = "", answer = "";
+		while (rset.next()) {
+			question = rset.getString("question");
+			out.println(question);
+			answer = rset.getString("answer");
+			out.println(answer);
+		}
 	%>
 	<!-- jsp code stop -->
 
@@ -36,7 +55,15 @@
 		you've asked and corresponding answers. an auto bid.</p>
 	<a href="Question.jsp"><input type="button" name="Question"
 		value="Ask Question" /></a>
-	<a href="Home.jsp"><input type="button" name="back" value="Back to Homepage" /></a>
+	<a href="Home.jsp"><input type="button" name="back"
+		value="Back to Homepage" /></a>
+	<br>
+	<br>
+	<br>
+	<br>
+	<%
+		
+	%>
 	<!-- HTML code stop -->
 </body>
 </html>

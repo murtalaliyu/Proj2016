@@ -38,8 +38,11 @@
 		String user = session.getAttribute("username").toString();
 		
 		//hash the ids
-		int forum_id = user.hashCode();
-		forum_id = Math.abs(forum_id);
+		int forum_id = 2;
+		
+		//set question_num
+		int questions = 10;
+		int random = (int )(Math. random() * 50000 + 1);
 
 		//returns account_id of person who's logged in with username user
 		ResultSet rset = stmt.executeQuery("SELECT * FROM users u WHERE u.username ='" + user + "'");
@@ -48,16 +51,16 @@
 			user_id = rset.getInt("account_id");
 		}
 		
-		//out.println(x);
-		
 		//placeholder for answer
 		String answer = "whats up";
 
 		//add question to db
 		int j = 0;
 		if (request.getParameter("Question") != null) {
-			j = stmt.executeUpdate("INSERT INTO forum(forum_id,asker_id,answer_id,question,answer) VALUES ('"
-					+ forum_id + "','" + user_id + "','" + 3 + "','" + question + "','" + answer + "');");
+			questions = questions * random;
+			forum_id = forum_id * random;
+			j = stmt.executeUpdate("INSERT INTO forum(forum_id,asker_id,answer_id,question,answer,question_num) VALUES ('"
+					+ forum_id + "','" + user_id + "','" + 3 + "','" + question + "','" + answer + "','" + questions + "');");
 		}
 		if (j > 0) {
 			System.out.println("done");

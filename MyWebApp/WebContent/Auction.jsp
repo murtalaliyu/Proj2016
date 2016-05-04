@@ -171,8 +171,8 @@
 			out.println("check adding active_auction to db");
 		}
 
-		System.out.println(auctionId + ',' + startDate + ',' + closeDate + ',' + reservePrice + ',' + currentPrice
-				+ ',' + startPrice + ',' + itemId + ',' + userId);
+		/*	System.out.println(auctionId + ',' + startDate + ',' + closeDate + ',' + reservePrice + ',' + currentPrice
+					+ ',' + startPrice + ',' + itemId + ',' + userId);*/
 
 		stmt.close();
 		conn.close();
