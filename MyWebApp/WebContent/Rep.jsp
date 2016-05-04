@@ -32,10 +32,9 @@
 	<p>This is the Customer representative page. You can answer user
 		questions, modify any info (only if necessary), remove illegal bids
 		and illegal auction.</p>
-	<input type="button" name="AnswerQuestion"
-		value="Answer User Questions" />
-	<input type="button" name="ModifyUserAccount"
-		value="Modify User Account" />
+	<a href="Answer.jsp"><input type="button" name="AnswerQuestion"
+		value="Answer User Questions" /></a>
+	<a href="EditProfile.jsp"><input type="submit" name="Modify" value="Modify this user's account" /></a>
 	<input type="button" name="ModifyRepAccount" value="Modify Rep Account" />
 	<input type="button" name="Report" value="Generate Report" />
 	<!-- HTML code stop -->

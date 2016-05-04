@@ -1,6 +1,6 @@
 <%-- 
-    Document   : Forum Page
-    Created on : May 01, 2016,09:59:55 PM
+    Document   : Answer Page
+    Created on : May 01, 2016,10:04:27 PM
     Author     : Murtala Aliyu
 --%>
 
@@ -14,7 +14,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
-<title>Forum Page</title>
+<title>Answer Page</title>
 </head>
 
 <body>
@@ -35,35 +35,58 @@
 		if (rset.next()) {
 			userId = rset.getInt("account_id");
 		}
-		
+
 		//get past questions and corresponding answer
 		rset = stmt.executeQuery("SELECT * FROM forum f WHERE f.asker_id ='" + userId + "'");
 		String question = "", answer = "";
+		int forumId = 0, questNum = 0;
+		if (rset.next()) {
+			forumId = rset.getInt("forum_id");
+			questNum = rset.getInt("question_num");
+			//System.out.println(forumId + ',' + questNum);
+		}
 		while (rset.next()) {
 			question = rset.getString("question");
-			%><p><%out.println("Question: " + question); %></p>
-			<% answer = rset.getString("answer"); %>
-			<p> <%out.println("Answer: " + answer); %> </p>
-			
-		<%} %>
+		}
+	%><p>
+		<%
+			out.println("Question: " + question);
+		%>
+	</p>
+	<textarea name="Question" placeholder="Post answer here" rows="25"
+		cols="70"></textarea>
+	<br>
+	<input type="submit" name="Answer" value="Submit" />
+	<a href="Rep.jsp"><input type="button" name="back" value="Back" /></a>
+
+	<%
+		//add question to db
+		int j = 0, answerId = 2;
+		int random = (int) (Math.random() * 50000 + 1);
+		if (request.getParameter("Answer") != null) {
+			try {
+				answerId = answerId * random;
+				//System.out.println(answer);
+				j = stmt.executeUpdate(
+						"INSERT INTO forum(forum_id,asker_id,answer_id,question,answer,question_num) VALUES ('"
+								+ forumId + "','" + userId + "','" + answerId + "','" + question + "','" + answer
+								+ "','" + questNum + "');");
+			} catch (Exception e) {
+				System.out.println("Looks like an error. Try again");
+			}
+		}
+		if (j > 0) {
+			System.out.println("done");
+		} else {
+			System.out.println("nope");
+		}
+	%>
+
 	<!-- jsp code stop -->
 
 
 	<!-- HTML code start -->
-	<p>This is your Forum page. You can post questions and a customer
-		representative will answer them. You can also view past questions
-		you've asked and corresponding answers. an auto bid.</p>
-	<a href="Question.jsp"><input type="button" name="Question"
-		value="Ask Question" /></a>
-	<a href="Home.jsp"><input type="button" name="back"
-		value="Back to Homepage" /></a>
-	<br>
-	<br>
-	<br>
-	<br>
-	<%
-		
-	%>
+	<form action="Answer.jsp" method="post"></form>
 	<!-- HTML code stop -->
 </body>
 </html>

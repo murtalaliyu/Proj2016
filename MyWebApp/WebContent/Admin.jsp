@@ -1,5 +1,5 @@
 <%-- 
-    Document   : Admin Page
+    Document   : Admin Home Page
     Created on : May 01, 2016, 6:24:08 PM
     Author     : Murtala Aliyu
 --%>
@@ -10,7 +10,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Profile Page</title>
+<title>Admin Home Page</title>
 </head>
 
 <body>
@@ -31,10 +31,17 @@
 	<!-- HTML code start -->
 	<p>This is the admin page. Admin can generate reports and monitor
 		users as well as customer representatives</p>
-		<input type="button" name="AnswerQuestion" value="Answer User Questions" />
-		<input type="button" name="ModifyUserAccount" value="Modify User Account" />
-		<input type="button" name="ModifyRepAccount" value="Modify Rep Account" />
-		<input type="button" name="Report" value="Generate Report" />
+	<a href="Signup.jsp"><input type="button" name="CreateRepAccount" value="Create Rep Account" /></a>
+	<input type="button" name="ModifyUserAccount"
+		value="Modify User Account" />
+	<input type="button" name="ModifyRepAccount" value="Modify Rep Account" />
+	<input type="button" name="Report" value="Generate Report" />
+	<br>
+	<br>
+	<br>
+	<br>
+	<a href="Logout.jsp"><input type="button" name="Logout"
+		value="Logout" /></a>
 	<!-- HTML code stop -->
 
 </body>

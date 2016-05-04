@@ -10,7 +10,7 @@
 
 <html>
 <head>
-<title>Signup Page</title>
+<title>Customer Rep Signup Page</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
@@ -25,7 +25,7 @@
          //Create query & run it
          Statement stmt = conn.createStatement(); //object for executing a static SQL statement
         		 
-         int userId = (int )(Math.random() * 10000 + 1);
+         int userId = (int )(Math.random() * 100000 + 1);
          String fullname = request.getParameter("Fullname");
          String username = request.getParameter("Username");
          String password = request.getParameter("Password");
@@ -33,15 +33,21 @@
          String gender = request.getParameter("Gender");
          String temp_age = request.getParameter("Age");
          int age = 0;
-         if (temp_age != null) {
-        	 age = Integer.parseInt(temp_age); 
-         }
+         try {
+ 			age = Integer.parseInt(request.getParameter("age"));
+ 		} catch (Exception e) {
+ 			response.sendRedirect("RequiredContent.html");
+ 		}
          
          ResultSet rset = stmt.executeQuery("SELECT fullname FROM users");
          
          int i = 0;
-         if (email != null && age >= 13) {
-         i = stmt.executeUpdate("INSERT INTO users(account_id,fullname,username,password,email,gender,age) VALUES ('"+userId+"','"+fullname+"','"+username+"','"+password+"','"+email+"','"+gender+"','"+age+"');");
+         if (email != null && age >= 13 && fullname != null && username != null && password != null) {
+        	 try {
+         i = stmt.executeUpdate("INSERT INTO customer_rep(account_id,fullname,username,password,email,gender,age) VALUES ('"+userId+"','"+fullname+"','"+username+"','"+password+"','"+email+"','"+gender+"','"+age+"');");
+        	 } catch (Exception e) {
+        		 out.println("Oops, something went wrong. Please try again");
+        	 }
          }
          if (i > 0) {
         	 System.out.println("Successful");
