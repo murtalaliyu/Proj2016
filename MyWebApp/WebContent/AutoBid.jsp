@@ -26,6 +26,38 @@
 		Connection conn = DriverManager.getConnection("JDBC:mysql://127.0.0.1/proj2016", "root", "WeHearKK290");
 		//Create query & run it
 		Statement stmt = conn.createStatement(); //object for executing a static SQL statement
+
+		//get bidder's secret upper limit
+		String tUpperLimit = request.getParameter("SecretUpperLimit");
+		int upperLimit = 0;
+		if (tUpperLimit != null) {
+			try {
+				upperLimit = Integer.parseInt(tUpperLimit);
+			} catch (Exception e) {
+				out.print("Upper limit is invalid. Please try again.");
+			}
+		}
+
+		//get bidder's automatic bid
+		String tAutoBid = request.getParameter("AutomaticBid");
+		int autoBid = 0;
+		if (tAutoBid != null) {
+			try {
+				autoBid = Integer.parseInt(tAutoBid);
+			} catch (Exception e) {
+				out.println("Automatic bid is invalid. Please try again.");
+			}
+		}
+
+		//get session username
+		String user = session.getAttribute("username").toString();
+
+		//return account_id of person who's logged in with username user
+		ResultSet rset = stmt.executeQuery("SELECT * FROM users u WHERE u.username ='" + user + "'");
+		int userId = 0;
+		if (rset.next()) {
+			userId = rset.getInt("account_id");
+		}
 	%>
 	<!-- jsp code stop -->
 
