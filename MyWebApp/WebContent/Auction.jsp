@@ -128,12 +128,6 @@
 			}
 		}*/
 
-		//format
-		String format = request.getParameter("Format");
-		
-		//sold_as
-		String soldAs = "Auction";
-
 		//Add item details to item db
 		int i = 0;
 		if (title != null && author != null && genre != null && isbn != 0 && publisher != null && year != 0
@@ -141,10 +135,9 @@
 				&& /*yearCheck == 1 &&*/ startPrice > 0 && reservePrice > 0 && isbn > 0) {
 			try {
 				i = stmt.executeUpdate(
-						"INSERT INTO item(item_id,title,author,genre,isbn,publisher,year,description,item_cond,format,sold_as) VALUES ('"
+						"INSERT INTO item(item_id,title,author,genre,isbn,publisher,year,description,item_cond) VALUES ('"
 								+ itemId + "','" + title + "','" + author + "','" + genre + "','" + isbn + "','"
-								+ publisher + "','" + year + "','" + description + "','" + condition + "','"
-								+ format + "','" + soldAs + "');");
+								+ publisher + "','" + year + "','" + description + "','" + condition + "');");
 			} catch (Exception e) {
 				out.print("You have entered an invalid response, ");
 			}
@@ -154,7 +147,7 @@
 		} else if (title == null) {
 
 		} else {
-			out.println("check adding item to db, ");
+			out.println("check adding item to db");
 		}
 
 		//Add active_auction details to db
@@ -206,13 +199,7 @@
 		<p>
 			Publisher: <input type="text" name="Publisher" value="" required />
 		</p>
-		<p>
-			Book format: <input type="radio" name="Format" value="Paperback" />
-			Paperback <input type="radio" name="Format" value="HardCover" />
-			Hard Cover <input type="radio" name="Format" value="LooseLeaf" />
-			Loose Leaf
-		<p>
-			Year Published: <input type="text" name="Year" value="" required />
+		Year Published: <input type="text" name="Year" value="" required />
 		</p>
 		<p>
 			Description: <input type="text" name="Description" value="" required />
