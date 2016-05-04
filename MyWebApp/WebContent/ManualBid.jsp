@@ -1,6 +1,6 @@
 <%-- 
-    Document   : Profile Editing Page
-    Created on : May 01, 2016,10:24:30 PM
+    Document   : Manual Bid
+    Created on : Apr 28, 2016,02:35:45 PM
     Author     : Murtala Aliyu
 --%>
 
@@ -14,7 +14,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
-<title>Edit my Profile</title>
+<title>Manual Bid page</title>
 </head>
 
 <body>
@@ -31,28 +31,13 @@
 
 
 	<!-- HTML code start -->
-	<form action="EditProfile.jsp" method="post">
-		<p>
-			Full name <input type="text" name="Fullname" value="" />
-		</p>
-		<p>
-			Username <input type="text" name="Username" value="" />
-		</p>
-		<p>
-			Password <input type="password" name="Password" value="" />
-		</p>
-		<p>
-			Email <input type="text" name="Email" value="" />
-		</p>
-		<p>
-			Gender <input type="text" name="Gender" value="" />
-		</p>
-		<p>
-			Age <input type="text" name="Age" value="" />
-		</p>
-		<input type="submit" name="signup" value="Edit My Profile"> <a
-			href="Profile.jsp"><button type="button">Back to Profile</button></a>
+	<p>Set your bid manually</p>
+	<form action="AutoBid.jsp" method="post">
+		<p>Set new Bid (should not be less than your last bid): <input type="number" name="HigherBid" /></p>
+		<a href=""><input type="button" name="ManualBid" value="Submit" /></a>
+		<a href="Bid.jsp"><input type="button" name="Back" value="Back" /></a>
 	</form>
+
 	<!-- HTML code stop -->
 </body>
 </html>

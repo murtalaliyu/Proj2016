@@ -24,12 +24,14 @@
 
 	<p>This is your home page where you can post items up for sale, or
 		bid for products you like.</p>
-	<a href="Auction.jsp"><button type="button">Start an Auction</button></a>
+	<a href="Auction.jsp"><button type="button">Start an
+			Auction</button></a>
 	<a href="Sell.jsp"><button type="button">Sell Item</button></a>
 	<a href="Bid.jsp"><button type="button">Buy Item</button></a>
 	<a href="History.jsp"><button type="button">View
 			Auction/Bid History</button></a>
 	<a href="Forum.jsp"><button type="button">Forum</button></a>
+	<a href="Alerts.jsp"><button type="button">Alerts</button></a>
 	<a href="Profile.jsp"><button type="button">My Profile</button></a>
 
 	<br />

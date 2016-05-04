@@ -1,6 +1,6 @@
 <%-- 
-    Document   : Profile Editing Page
-    Created on : May 01, 2016,10:24:30 PM
+    Document   : Alerts
+    Created on : Apr 28, 2016,02:35:45 PM
     Author     : Murtala Aliyu
 --%>
 
@@ -14,7 +14,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
-<title>Edit my Profile</title>
+<title>Alerts page</title>
 </head>
 
 <body>
@@ -31,28 +31,8 @@
 
 
 	<!-- HTML code start -->
-	<form action="EditProfile.jsp" method="post">
-		<p>
-			Full name <input type="text" name="Fullname" value="" />
-		</p>
-		<p>
-			Username <input type="text" name="Username" value="" />
-		</p>
-		<p>
-			Password <input type="password" name="Password" value="" />
-		</p>
-		<p>
-			Email <input type="text" name="Email" value="" />
-		</p>
-		<p>
-			Gender <input type="text" name="Gender" value="" />
-		</p>
-		<p>
-			Age <input type="text" name="Age" value="" />
-		</p>
-		<input type="submit" name="signup" value="Edit My Profile"> <a
-			href="Profile.jsp"><button type="button">Back to Profile</button></a>
-	</form>
+	<p>These are your alerts</p>
+	<a href="Home.jsp"><input type="button" name="Back" value="Back to Home Page" /></a>
 	<!-- HTML code stop -->
 </body>
 </html>

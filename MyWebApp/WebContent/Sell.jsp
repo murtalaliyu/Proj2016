@@ -137,7 +137,8 @@
 		<p>*automatically add opening date and time to db</p>
 
 		<button type="button" name="Sell item">Sell Item</button>
-		<a href="Home.jsp"><button type="button">Back to HomePage</button></a>
+		<a href="Home.jsp"><button type="button">Back to Home
+				Page</button></a>
 	</form>
 	<!-- HTML code stop -->
 </body>

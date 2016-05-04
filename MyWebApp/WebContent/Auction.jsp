@@ -10,6 +10,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ page language="java"%>
 <%@ page import="java.sql.*"%>
+<%@ page import="java.text.*"%>
 
 <html>
 <head>
@@ -84,13 +85,16 @@
 		// Get creation time.
 		Date startDate = new Date(session.getCreationTime());
 
-		// Get close date.
-		/*String temp_closeDate = request.getParameter("CloseDate");
-		int closeDate = 0;
-		if (temp_closeDate != null) {
-			closeDate = Integer.parseInt(temp_closeDate);
-		}*/
-		Date closeDate = new Date(session.getCreationTime());
+		// Get close date
+		DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		String temp_closeDate = request.getParameter("CloseDate");
+		try {
+			Date date = formatter.parse(temp_closeDate);
+			System.out.println(date);
+			System.out.println(formatter.format(date));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 
 		//Add item details to db
 		int i = 0;
@@ -159,7 +163,7 @@
 			Start Price: <input type="number" name="StartPrice" value="" required />
 		<p>
 			Auction Closing Date <input type="text" name="CloseDate"
-				placeholder="yyyy-mm-dd" required />
+				placeholder="yyyy-MM-dd" required />
 		</p>
 		<p>*automatically add opening date and time to db</p>
 

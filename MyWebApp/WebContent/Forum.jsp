@@ -36,7 +36,7 @@
 		you've asked and corresponding answers. an auto bid.</p>
 	<a href="Question.jsp"><input type="button" name="Question"
 		value="Ask Question" /></a>
-	<a href="Homepage.jsp"><input type="button" name="back" value="Back to Homepage" /></a>
+	<a href="Home.jsp"><input type="button" name="back" value="Back to Homepage" /></a>
 	<!-- HTML code stop -->
 </body>
 </html>

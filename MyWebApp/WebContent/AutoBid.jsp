@@ -1,6 +1,6 @@
 <%-- 
-    Document   : Profile Editing Page
-    Created on : May 01, 2016,10:24:30 PM
+    Document   : Automatic Bid
+    Created on : Apr 28, 2016,02:35:45 PM
     Author     : Murtala Aliyu
 --%>
 
@@ -14,7 +14,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
-<title>Edit my Profile</title>
+<title>Automatic Bid page</title>
 </head>
 
 <body>
@@ -31,28 +31,20 @@
 
 
 	<!-- HTML code start -->
-	<form action="EditProfile.jsp" method="post">
+	<p>Set your automatic bid here</p>
+	<form action="AutoBid.jsp" method="post">
 		<p>
-			Full name <input type="text" name="Fullname" value="" />
+			Upper Limit (This is secret): <input type="number"
+				name="SecretUpperLimit" value="" />
 		</p>
 		<p>
-			Username <input type="text" name="Username" value="" />
+			Put in a higher bid automatically: <input type="number"
+				name="AutomaticBid" value="" />
 		</p>
-		<p>
-			Password <input type="password" name="Password" value="" />
-		</p>
-		<p>
-			Email <input type="text" name="Email" value="" />
-		</p>
-		<p>
-			Gender <input type="text" name="Gender" value="" />
-		</p>
-		<p>
-			Age <input type="text" name="Age" value="" />
-		</p>
-		<input type="submit" name="signup" value="Edit My Profile"> <a
-			href="Profile.jsp"><button type="button">Back to Profile</button></a>
+		<a href=""><button type="submit">Submit Bid</button></a> <a
+			href="Bid.jsp"><input type="button" name="back" value="Back" /></a>
 	</form>
+
 	<!-- HTML code stop -->
 </body>
 </html>

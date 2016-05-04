@@ -78,7 +78,7 @@
 		Age: <% out.println(age); %>
 		<br><br>
 		<a href="EditProfile.jsp"><input type="button" name="Edit" value="Edit my Profile" /></a>
-		<a href="Homepage.jsp"><input type="button" name="Back" value="Back to Homepage" /></a>
+		<a href="Home.jsp"><input type="button" name="Back" value="Back to Home page" /></a>
 	<!-- HTML code stop -->
 
 </body>

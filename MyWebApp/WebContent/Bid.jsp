@@ -34,7 +34,12 @@
 	<p>This is your Bid page, it contains all information regarding
 		your past and current bids. You have the option of bidding manually or
 		setting an auto bid.</p>
-	<a href="Home.jsp"><button type="button">Back to HomePage</button></a>
+	<a href="AutoBid.jsp"><button type="submit" name="AutoBid" value="">Set
+			Automatic Bid</button></a>
+	<a href="ManualBid.jsp"><button type="submit" name="ManualBid"
+			value="">Bid Manually</button></a>
+	<a href="Home.jsp"><button type="submit" name="Back">Back
+			to HomePage</button></a>
 
 	<!-- HTML code stop -->
 </body>
