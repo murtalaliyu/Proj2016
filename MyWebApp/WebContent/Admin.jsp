@@ -35,7 +35,7 @@
 	<input type="button" name="ModifyUserAccount"
 		value="Modify User Account" />
 	<input type="button" name="ModifyRepAccount" value="Modify Rep Account" />
-	<input type="button" name="Report" value="Generate Report" />
+	<a href="SalesReport.jsp"><input type="button" name="Report" value="Generate Report" /></a>
 	<br>
 	<br>
 	<br>
