@@ -16,48 +16,68 @@
 <body>
 
 	<!-- jsp code start-->
-	<%
-         //LoadmySQLdriver
-         Class.forName("com.mysql.jdbc.Driver").newInstance();
-         //Connect to the local database
-         Connection conn = DriverManager.getConnection("JDBC:mysql://127.0.0.1/proj2016","root","WeHearKK290");
-         //Create query & run it
-         Statement stmt = conn.createStatement(); //object for executing a static SQL statement
+	<%   
+	
+	String username=session.getAttribute("username").toString();
+		
+	Connection conn;
+	try {
+	Class.forName("com.mysql.jdbc.Driver").newInstance();
+
+	} catch (InstantiationException e) {
+	e.printStackTrace();
+
+	} catch( IllegalAccessException e) {
+	e.printStackTrace();	
+
+	} catch(ClassNotFoundException e) {
+	e.printStackTrace();
+
+	}
+	
+	try {
+		 conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/proj2016?autoReconnect=true", "root", "WeHearKK290");
+	
+	} catch (SQLException e) {
+	// TODO Auto-generated catch block
+	e.printStackTrace();
+	conn = null;
+	}
+	
+	Statement stmt = conn.createStatement();
          
-         ResultSet rset = stmt.executeQuery("SELECT account_id FROM users WHERE account_id = 16");
-  		int id = 0;
-  		if (rset.next()) {
-  			id = rset.getInt(1);
-  		}
+	ResultSet rset=stmt.executeQuery("select account_id from users where username='"+username+"'");
+	int account_id = 0;
+		if (rset.next()) {
+			account_id = rset.getInt(1);
+		}
+	
+	
+	
+	
+  		
        //returns user information of person whose account id is 16
- 		rset = stmt.executeQuery("SELECT fullname FROM users WHERE account_id = 16");
+ 		rset = stmt.executeQuery("SELECT fullname FROM users WHERE username='"+username+"'");
  		String name = "";
  		if (rset.next()) {
  			name = rset.getString(1);
  		}
- 		rset = stmt.executeQuery("SELECT username FROM users WHERE account_id = 16");
- 		String username = "";
- 		if (rset.next()) {
- 			username = rset.getString(1);
- 		}
- 		rset = stmt.executeQuery("SELECT email FROM users WHERE account_id = 16");
+ 		
+ 		rset = stmt.executeQuery("SELECT email FROM users WHERE username='"+username+"'");
  		String email = "";
  		if (rset.next()) {
  			email = rset.getString(1);
  		}
- 		rset = stmt.executeQuery("SELECT gender FROM users WHERE account_id = 16");
+ 		rset = stmt.executeQuery("SELECT gender FROM users WHERE username='"+username+"'");
  		String gender = "";
  		if (rset.next()) {
  			gender = rset.getString(1);
  		}
- 		rset = stmt.executeQuery("SELECT age FROM users WHERE account_id = 16");
- 		String age = "";
+ 		rset = stmt.executeQuery("SELECT age FROM users WHERE username='"+username+"'");
+ 		int age = 0;
  		if (rset.next()) {
- 			age = rset.getString(1);
+ 			age = rset.getInt(1);
  		}
- 		
- 		//String user = session.getAttribute("username").toString();
- 		
          %>
 	<!-- jsp code stop-->
 
@@ -65,7 +85,7 @@
 
 	<!-- HTML code start -->
 		<p>This is your profile page.</p>
-		Account Id: <% out.println(id); %>
+		Account Id: <% out.println(account_id); %>
 		<br><br>
 		Name: <% out.println(name); %>
 		<br><br>
@@ -77,8 +97,7 @@
 		<br><br>
 		Age: <% out.println(age); %>
 		<br><br>
-		<a href="EditProfile.jsp"><input type="button" name="Edit" value="Edit my Profile" /></a>
-		<a href="Home.jsp"><input type="button" name="Back" value="Back to Home page" /></a>
+		<a href="Home.jsp"><input type="button" name="Back" value="Back to Homepage" /></a>
 	<!-- HTML code stop -->
 
 </body>

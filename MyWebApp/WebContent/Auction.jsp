@@ -24,7 +24,7 @@
 		//LoadmySQLdriver
 		Class.forName("com.mysql.jdbc.Driver").newInstance();
 		//Connect to the local database
-		Connection conn = DriverManager.getConnection("JDBC:mysql://127.0.0.1/proj2016", "root", "WeHearKK290");
+		Connection  conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/proj2016?autoReconnect=true", "root", "WeHearKK290");
 		//Create query & run it
 		Statement stmt = conn.createStatement(); //object for executing a static SQL statement
 

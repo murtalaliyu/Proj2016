@@ -11,6 +11,8 @@ pageEncoding="UTF-8" import = "java.util.*" import = "java.sql.*" %>
         String username=request.getParameter("username");
         String password=request.getParameter("password");
         
+        //username is admin
+        
         
         
         //this is where you set up a connection with your mysql server to check if 
@@ -43,7 +45,7 @@ pageEncoding="UTF-8" import = "java.util.*" import = "java.sql.*" %>
 		
 		Statement stmt = conn.createStatement();
 		
-		ResultSet rs=stmt.executeQuery("select * from users where username='"+username+"'");
+		ResultSet rs=stmt.executeQuery("select * from users, admin where username='"+username+"' and users.account_id=admin.account_id");
 		
 		
 		
@@ -52,7 +54,7 @@ pageEncoding="UTF-8" import = "java.util.*" import = "java.sql.*" %>
 			if(rs.getString(4).equals(password)) { 
 				
 				session.setAttribute("username",username);
-	            response.sendRedirect("Home.jsp");
+	            response.sendRedirect("Admin.jsp");
 	            
 	            
 	            out.println("it worrrked");
